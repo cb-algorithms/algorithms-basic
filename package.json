@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc -p .",
     "prebuild": "rm -r build",
+    "run": "ts-node",
     "test": "jest"
   },
   "devDependencies": {
