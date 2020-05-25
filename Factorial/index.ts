@@ -9,6 +9,7 @@ export const factorial1 = (n: number): number => {
 
 // -----------------------------------------------------------------------------
 // Solution 2: tail-call optimization recursion
+// References: https://medium.com/javascript-in-plain-english/javascript-optimizations-tail-call-optimization-tco-471b4f8e4f37
 // -----------------------------------------------------------------------------
 const factorial2Internal = (i: number, acc: number): number => {
   if (i === 0) return acc;
@@ -30,15 +31,14 @@ export const factorial3 = (n: number) => {
   /**
    * iterate:
    * if (i === 0) return acc;
-   * acc *- i;
-   * i -= 1;
+   * [i, acc] = [i - 1, acc * i];
    * goto iterate;
    */
-  iterate: for (; i > 0; acc *= i, i -= 1) {
+  iterate: while (true) {
+    if (i === 0) return acc;
+    [i, acc] = [i - 1, acc * i];
     continue iterate;
   }
-
-  return acc;
 };
 // -----------------------------------------------------------------------------
 
