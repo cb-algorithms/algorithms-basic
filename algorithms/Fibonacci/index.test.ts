@@ -1,4 +1,4 @@
-import { fibonacci1, fibonacci2, fibonacci3, fibonacci4, fibonacci5 } from '.';
+import { fibonacci1, fibonacci2, fibonacci3, fibonacci4, fibonacci5, fibonacci6 } from '.';
 
 describe(`Fibonacci`, () => {
   const testCases: TestCase[] = [
@@ -23,6 +23,9 @@ describe(`Fibonacci`, () => {
   });
   test.each<TestCase>(testCases)(`Solution 5`, ({ n, expected }) => {
     expect(fibonacci5(n)).toBe(expected);
+  });
+  test.each<TestCase>(testCases)(`Solution 6`, ({ n, expected }) => {
+    expect(fibonacci6(n)).toBe(expected);
   });
 });
 

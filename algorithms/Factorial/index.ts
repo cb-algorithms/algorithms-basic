@@ -43,7 +43,8 @@ export const factorial3 = (n: number) => {
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
-// Solution 4: convert recursion to dynamic programming
+// Solution 4: Dynamic Programming - Tabulation Method (Bottom Up)
+// References: https://www.geeksforgeeks.org/tabulation-vs-memoization/
 // -----------------------------------------------------------------------------
 export const factorial4 = (n: number) => {
   const results = [1];
@@ -57,7 +58,7 @@ export const factorial4 = (n: number) => {
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
-// Solution 5: optimized version of dynamic programming
+// Solution 5: Optimized version of Solution 4
 // -----------------------------------------------------------------------------
 export const factorial5 = (n: number) => {
   let result = 1;
@@ -67,5 +68,19 @@ export const factorial5 = (n: number) => {
   }
 
   return result;
+};
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Solution 6: Dynamic Programming - Memoization Method (Top Down)
+// References: https://www.geeksforgeeks.org/tabulation-vs-memoization/
+// -----------------------------------------------------------------------------
+const memoizedResults6: number[] = [1];
+
+export const factorial6 = (n: number): number => {
+  return (memoizedResults6[n] =
+    typeof memoizedResults6[n] === 'number'
+      ? memoizedResults6[n]
+      : factorial6(n - 1) * n);
 };
 // -----------------------------------------------------------------------------

@@ -48,7 +48,7 @@ export const fibonacci3 = (n: number) => {
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
-// Solution 4: convert recursion to dynamic programming
+// Solution 4: Dynamic Programming - Tabulation Method (Bottom Up)
 // References: https://www.geeksforgeeks.org/dynamic-programming/
 // -----------------------------------------------------------------------------
 export const fibonacci4 = (n: number) => {
@@ -63,7 +63,7 @@ export const fibonacci4 = (n: number) => {
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
-// Solution 5: optimized version of dynamic programming
+// Solution 5: Optimized version of Solution 4
 // -----------------------------------------------------------------------------
 export const fibonacci5 = (n: number) => {
   if (n === 0) return 0;
@@ -77,5 +77,18 @@ export const fibonacci5 = (n: number) => {
   }
 
   return curr;
+};
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Solution 6: Dynamic Programming - Memoization Method (Top Down)
+// -----------------------------------------------------------------------------
+const memoizedResults6: number[] = [0, 1];
+
+export const fibonacci6 = (n: number): number => {
+  return (memoizedResults6[n] =
+    typeof memoizedResults6[n] === 'number'
+      ? memoizedResults6[n]
+      : fibonacci6(n - 1) + fibonacci6(n - 2));
 };
 // -----------------------------------------------------------------------------

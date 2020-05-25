@@ -1,4 +1,11 @@
-import { factorial1, factorial2, factorial3, factorial4, factorial5 } from '.';
+import {
+  factorial1,
+  factorial2,
+  factorial3,
+  factorial4,
+  factorial5,
+  factorial6,
+} from '.';
 
 describe(`Factorial`, () => {
   const testCases: TestCase[] = [
@@ -22,6 +29,9 @@ describe(`Factorial`, () => {
   });
   test.each<TestCase>(testCases)(`Solution 5`, ({ n, expected }) => {
     expect(factorial5(n)).toBe(expected);
+  });
+  test.each<TestCase>(testCases)(`Solution 6`, ({ n, expected }) => {
+    expect(factorial6(n)).toBe(expected);
   });
 });
 
