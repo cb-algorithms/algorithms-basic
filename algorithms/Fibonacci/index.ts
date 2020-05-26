@@ -10,7 +10,6 @@ export const fibonacci1 = (n: number): number => {
 
 // -----------------------------------------------------------------------------
 // Solution 2: tail-call optimization recursion
-// References: https://www.geeksforgeeks.org/tail-recursion-fibonacci/
 // -----------------------------------------------------------------------------
 const fib2 = (i: number, curr: number, prev: number): number => {
   if (i === 1) return curr;
@@ -49,7 +48,6 @@ export const fibonacci3 = (n: number) => {
 
 // -----------------------------------------------------------------------------
 // Solution 4: Dynamic Programming - Tabulation Method (Bottom Up)
-// References: https://www.geeksforgeeks.org/dynamic-programming/
 // -----------------------------------------------------------------------------
 export const fibonacci4 = (n: number) => {
   const results = [0, 1];

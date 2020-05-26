@@ -1,9 +1,7 @@
-// -----------------------------------------------------------------------------
-// Solution 1: naive recursion
-// References: https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
-
 import { generateArray } from '../../utils.ts/array';
 
+// -----------------------------------------------------------------------------
+// Solution 1: naive recursion
 // -----------------------------------------------------------------------------
 export const knapsack1 = (
   totalItem: number,
@@ -11,9 +9,8 @@ export const knapsack1 = (
   weights: number[],
   totalWeight: number,
 ) => {
-  const knapsack = (item: number, weight: number): number => {
-    if (item === 0) return 0;
-    return item === 0
+  const knapsack = (item: number, weight: number): number =>
+    item === 0
       ? 0
       : weights[item - 1] > weight
       ? knapsack(item - 1, weight)
@@ -21,7 +18,6 @@ export const knapsack1 = (
           values[item - 1] + knapsack(item - 1, weight - weights[item - 1]),
           knapsack(item - 1, weight),
         );
-  };
 
   return knapsack(totalItem, totalWeight);
 };
@@ -29,7 +25,6 @@ export const knapsack1 = (
 
 // -----------------------------------------------------------------------------
 // Solution 2: Dynamic Programming - Tabulation Method (Bottom Up)
-// References: https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
 // -----------------------------------------------------------------------------
 export const knapsack2 = (
   totalItem: number,
@@ -59,7 +54,6 @@ export const knapsack2 = (
 
 // -----------------------------------------------------------------------------
 // Solution 3: Dynamic Programming - Memoization Method (Top Down)
-// https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
 // -----------------------------------------------------------------------------
 export const knapsack3 = (
   totalItem: number,
