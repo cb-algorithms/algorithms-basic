@@ -11,13 +11,13 @@ export const factorial1 = (n: number): number => {
 // Solution 2: tail-call optimization recursion
 // References: https://medium.com/javascript-in-plain-english/javascript-optimizations-tail-call-optimization-tco-471b4f8e4f37
 // -----------------------------------------------------------------------------
-const factorial2Internal = (i: number, acc: number): number => {
+const fac2 = (i: number, acc: number): number => {
   if (i === 0) return acc;
-  return factorial2Internal(i - 1, acc * i); // tail-call
+  return fac2(i - 1, acc * i); // tail-call
 };
 
 export const factorial2 = (n: number): number => {
-  return factorial2Internal(n, 1);
+  return fac2(n, 1);
 };
 // -----------------------------------------------------------------------------
 
@@ -48,11 +48,9 @@ export const factorial3 = (n: number) => {
 // -----------------------------------------------------------------------------
 export const factorial4 = (n: number) => {
   const results = [1];
-
   for (let i = 1; i <= n; ++i) {
     results[i] = i * results[i - 1];
   }
-
   return results[n];
 };
 // -----------------------------------------------------------------------------
@@ -62,11 +60,9 @@ export const factorial4 = (n: number) => {
 // -----------------------------------------------------------------------------
 export const factorial5 = (n: number) => {
   let result = 1;
-
   for (let i = 1; i <= n; ++i) {
     result *= i;
   }
-
   return result;
 };
 // -----------------------------------------------------------------------------
@@ -75,12 +71,11 @@ export const factorial5 = (n: number) => {
 // Solution 6: Dynamic Programming - Memoization Method (Top Down)
 // References: https://www.geeksforgeeks.org/tabulation-vs-memoization/
 // -----------------------------------------------------------------------------
-const memoizedResults6: number[] = [1];
+const results6: number[] = [1];
 
 export const factorial6 = (n: number): number => {
-  return (memoizedResults6[n] =
-    typeof memoizedResults6[n] === 'number'
-      ? memoizedResults6[n]
-      : factorial6(n - 1) * n);
+  let result = results6[n];
+  if (typeof result !== 'number') result = factorial6(n - 1) * n;
+  return (results6[n] = result);
 };
 // -----------------------------------------------------------------------------

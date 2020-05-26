@@ -12,14 +12,14 @@ export const fibonacci1 = (n: number): number => {
 // Solution 2: tail-call optimization recursion
 // References: https://www.geeksforgeeks.org/tail-recursion-fibonacci/
 // -----------------------------------------------------------------------------
-const fibonacci2Internal = (i: number, curr: number, prev: number): number => {
+const fib2 = (i: number, curr: number, prev: number): number => {
   if (i === 1) return curr;
   if (i === 0) return prev;
-  return fibonacci2Internal(i - 1, curr + prev, curr);
+  return fib2(i - 1, curr + prev, curr);
 };
 
 export const fibonacci2 = (n: number) => {
-  return fibonacci2Internal(n, 1, 0);
+  return fib2(n, 1, 0);
 };
 // -----------------------------------------------------------------------------
 
@@ -53,11 +53,9 @@ export const fibonacci3 = (n: number) => {
 // -----------------------------------------------------------------------------
 export const fibonacci4 = (n: number) => {
   const results = [0, 1];
-
   for (let i = 2; i <= n; ++i) {
     results[i] = results[i - 1] + results[i - 2];
   }
-
   return results[n];
 };
 // -----------------------------------------------------------------------------
@@ -83,12 +81,12 @@ export const fibonacci5 = (n: number) => {
 // -----------------------------------------------------------------------------
 // Solution 6: Dynamic Programming - Memoization Method (Top Down)
 // -----------------------------------------------------------------------------
-const memoizedResults6: number[] = [0, 1];
+const results6: number[] = [0, 1];
 
 export const fibonacci6 = (n: number): number => {
-  return (memoizedResults6[n] =
-    typeof memoizedResults6[n] === 'number'
-      ? memoizedResults6[n]
-      : fibonacci6(n - 1) + fibonacci6(n - 2));
+  let result = results6[n];
+  if (typeof results6[n] !== 'number')
+    result = fibonacci6(n - 1) + fibonacci6(n - 2);
+  return (results6[n] = result);
 };
 // -----------------------------------------------------------------------------
