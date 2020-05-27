@@ -3,7 +3,6 @@ import DescendingStack from '../../data_structures/DescendingStack';
 const moveDisk = (from: DescendingStack, to: DescendingStack) => {
   const item = from.pop()!;
   to.push(item);
-  console.log(`Moved ${item} from ${from.name} to ${to.name}`);
 };
 
 const tower1Internal = (
