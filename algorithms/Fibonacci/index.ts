@@ -31,17 +31,17 @@ export const fibonacci3 = (n: number) => {
   let prev = 0;
 
   /**
-   * iterate:
+   * loop:
    * if (i === 1) return prev_1;
    * if (i === 0) return prev_2;
    * [i, prev_1, prev_2] = [i - 1, prev_1 + prev_2, prev_1];
-   * goto iterate;
+   * goto loop;
    */
-  iterate: while (true) {
+  loop: while (true) {
     if (i === 1) return curr;
     if (i === 0) return prev;
     [i, curr, prev] = [i - 1, curr + prev, curr];
-    continue iterate;
+    continue loop;
   }
 };
 // -----------------------------------------------------------------------------
@@ -62,11 +62,11 @@ export const fibonacci4 = (n: number) => {
 // Solution 5: Optimized version of Solution 4
 // -----------------------------------------------------------------------------
 export const fibonacci5 = (n: number) => {
-  if (n === 0) return 0;
-  if (n === 1) return 1;
-
   let curr = 1;
   let prev = 0;
+
+  if (n === 1) return curr;
+  if (n === 0) return prev;
 
   for (let i = 2; i <= n; ++i) {
     [curr, prev] = [curr + prev, curr];
