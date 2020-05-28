@@ -4,9 +4,9 @@
 
 ```text
 set: number[];
-f(∀n, 0) = true
-f(0, ∀sum) = false
-f(n, sum) = f(n - 1, sum - set[n - 1]) || f(n - 1, sum)
+f(n, 0) = true
+f(0, sum) = false
+f(n, sum) = (sum >= set[n - 1] && f(n - 1, sum - set[n - 1])) || f(n - 1, sum)
 ```
 
 ## References
