@@ -1,4 +1,4 @@
-import { coinChange1, coinChange2, coinChange3 } from '.';
+import { f1, f2, f3 } from '.';
 
 describe(`Coin Change`, () => {
   const testCases: TestCase[] = [
@@ -8,19 +8,19 @@ describe(`Coin Change`, () => {
   test.each<TestCase>(testCases)(
     `Solution 1`,
     ({ totalCents, coins, expected }) => {
-      expect(coinChange1(coins, totalCents)).toBe(expected);
+      expect(f1(coins, totalCents)).toBe(expected);
     },
   );
   test.each<TestCase>(testCases)(
     `Solution 2`,
     ({ totalCents, coins, expected }) => {
-      expect(coinChange2(coins, totalCents)).toBe(expected);
+      expect(f2(coins, totalCents)).toBe(expected);
     },
   );
   test.each<TestCase>(testCases)(
     `Solution 3`,
     ({ totalCents, coins, expected }) => {
-      expect(coinChange3(coins, totalCents)).toBe(expected);
+      expect(f3(coins, totalCents)).toBe(expected);
     },
   );
 });

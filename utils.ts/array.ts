@@ -15,15 +15,19 @@ export const generateArrayWithDefault: GenerateArrayWithDefault = <TValue>(
       )
     : defaultValue;
 
+export const max = (...numbers: number[]) => maxOf(numbers);
+
+export const maxOf = (numbers: number[]) => Math.max(...numbers);
+
 export const range = (length: number, startAt = 0) =>
   Array.from({ length }, (_, index) => startAt + index);
 
 export const rangeRevert = (length: number, startAt = length - 1) =>
   Array.from({ length }, (_, index) => startAt - index);
 
-export const sum = (...numbers: number[]) => sumArray(numbers);
+export const sum = (...numbers: number[]) => sumOf(numbers);
 
-export const sumArray = (numbers: number[]) =>
+export const sumOf = (numbers: number[]) =>
   numbers.reduce((acc, cur) => acc + cur, 0);
 
 export interface GenerateArray {
