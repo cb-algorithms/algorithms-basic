@@ -1,4 +1,4 @@
-import { combination1, combination2 } from '.';
+import { f1, f2, f3 } from '.';
 
 describe(`Sum Combinations`, () => {
   const testCases: TestCase[] = [
@@ -8,13 +8,19 @@ describe(`Sum Combinations`, () => {
   test.each<TestCase>(testCases)(
     `Solution 1`,
     ({ total, numbers, expected }) => {
-      expect(combination1(total, numbers)).toBe(expected);
+      expect(f1(total, numbers)).toBe(expected);
     },
   );
   test.each<TestCase>(testCases)(
     `Solution 2`,
     ({ total, numbers, expected }) => {
-      expect(combination2(total, numbers)).toBe(expected);
+      expect(f2(total, numbers)).toBe(expected);
+    },
+  );
+  test.each<TestCase>(testCases)(
+    `Solution 3`,
+    ({ total, numbers, expected }) => {
+      expect(f3(total, numbers)).toBe(expected);
     },
   );
 });
