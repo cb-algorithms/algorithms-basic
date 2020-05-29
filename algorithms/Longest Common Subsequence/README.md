@@ -19,3 +19,4 @@ return f(s1.length, s2.length)
 ## References
 
 1. [[GeeksforGeeks] Longest Common Subsequence](https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/)
+1. [[GeeksforGeeks] A Space Optimized Solution of LCS](https://www.geeksforgeeks.org/space-optimized-solution-lcs/)
