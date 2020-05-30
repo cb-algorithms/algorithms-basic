@@ -25,4 +25,5 @@ return f(total)
 
 ## Related
 
+1. Ways to Cover a Distance: the same problem
 1. Coin Change Problem: similar problem but doesn't count combinations that differ only in order, e.g. [1, 2, 3] and [2, 3, 1] are considered 1 combination.

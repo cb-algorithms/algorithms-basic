@@ -4,11 +4,11 @@ import { generateArray } from '../../utils.ts/array';
 // Solution 1: naive recursion
 // -----------------------------------------------------------------------------
 export const f1 = (total: number, numbers: number[]) => {
-  const f = (sum: number): number => {
-    if (sum === 0) return 1;
+  const f = (n: number): number => {
+    if (n === 0) return 1;
     let result = 0;
     for (const number of numbers) {
-      if (sum >= number) result += f(sum - number);
+      if (n >= number) result += f(n - number);
     }
     return result;
   };
@@ -21,14 +21,13 @@ export const f1 = (total: number, numbers: number[]) => {
 // -----------------------------------------------------------------------------
 export const f2 = (total: number, numbers: number[]) => {
   const results = generateArray<number>(total + 1);
-  for (let sum = 0; sum <= total; ++sum) {
-    results[sum] =
-      sum === 0
-        ? 1
-        : numbers.reduce(
-            (acc, number) => acc + (sum >= number ? results[sum - number] : 0),
-            0,
-          );
+  results[0] = 1;
+  for (let n = 1; n <= total; ++n) {
+    let result = 0;
+    for (const number of numbers) {
+      if (n >= number) result += results[n - number];
+    }
+    results[n] = result;
   }
   return results[total];
 };
@@ -39,21 +38,19 @@ export const f2 = (total: number, numbers: number[]) => {
 // -----------------------------------------------------------------------------
 export const f3 = (total: number, numbers: number[]) => {
   const results = generateArray<number>(total + 1);
+  results[0] = 1;
 
-  const combination = (sum: number) => {
-    let result = results[sum];
-    if (typeof result !== 'number')
-      result =
-        sum === 0
-          ? 1
-          : numbers.reduce(
-              (acc, number) =>
-                acc + (sum >= number ? combination(sum - number) : 0),
-              0,
-            );
-    return (results[sum] = result);
+  const f = (n: number) => {
+    let result = results[n];
+    if (typeof result !== 'number') {
+      result = 0;
+      for (const number of numbers) {
+        if (n >= number) result += f(n - number);
+      }
+    }
+    return (results[n] = result);
   };
 
-  return combination(total);
+  return f(total);
 };
 // -----------------------------------------------------------------------------

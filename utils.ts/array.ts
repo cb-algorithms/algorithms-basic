@@ -19,6 +19,15 @@ export const max = (...numbers: number[]) => maxOf(numbers);
 
 export const maxOf = (numbers: number[]) => Math.max(...numbers);
 
+export const min = (...numbers: number[]) => minOf(numbers);
+
+export const minOf = (numbers: number[]) => Math.min(...numbers);
+
+export const product = (...numbers: number[]) => productOf(numbers);
+
+export const productOf = (numbers: number[]) =>
+  numbers.reduce((acc, cur) => acc * cur, 1);
+
 export const range = (length: number, startAt = 0) =>
   Array.from({ length }, (_, index) => startAt + index);
 
