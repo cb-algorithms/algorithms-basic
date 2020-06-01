@@ -37,37 +37,57 @@ export const f2 = (arr: number[]) => {
   return Math.abs(total - sum * 2);
 };
 
-export const fb1 = (arr: number[]) => {
-  const f = (n: number, total: number): SubsetResult => {
+export const f3 = (arr: number[]) => {
+  const f = (n: number, target: number): SubsetResult => {
     if (n === 0) return { subset1: [], subset2: [] };
     const value = arr[n - 1];
-    const result1 = f(n - 1, total);
-    const result2 = f(n - 1, total - value);
-    return Math.abs(total - sumOf(result1.subset1)) <
-      Math.abs(total - (sumOf(result2.subset1) + value))
+    const result1 = f(n - 1, target);
+    const result2 = f(n - 1, target - value);
+    return Math.abs(target - sumOf(result1.subset1)) <
+      Math.abs(target - (sumOf(result2.subset1) + value))
       ? { subset1: [...result1.subset1], subset2: [...result1.subset2, value] }
       : { subset1: [...result2.subset1, value], subset2: [...result2.subset2] };
   };
-  return f(arr.length, sumOf(arr) / 2);
+  const { subset1, subset2 } = f(arr.length, sumOf(arr) / 2);
+  return Math.abs(sumOf(subset1) - sumOf(subset2));
+};
+
+export const f4 = (arr: number[]) => {
+  const results = Array.from(
+    { length: arr.length + 1 },
+    () => ({} as Record<number, SubsetResult>),
+  );
+
+  const f = (n: number, target: number): SubsetResult => {
+    let result = results[n][target];
+    if (result) return result;
+
+    if (n === 0) result = { subset1: [], subset2: [] };
+    else {
+      const value = arr[n - 1];
+      const result1 = f(n - 1, target);
+      const result2 = f(n - 1, target - value);
+      result =
+        Math.abs(target - sumOf(result1.subset1)) <
+        Math.abs(target - (sumOf(result2.subset1) + value))
+          ? {
+              subset1: [...result1.subset1],
+              subset2: [...result1.subset2, value],
+            }
+          : {
+              subset1: [...result2.subset1, value],
+              subset2: [...result2.subset2],
+            };
+    }
+
+    return (results[n][target] = result);
+  };
+
+  const { subset1, subset2 } = f(arr.length, sumOf(arr) / 2);
+  return Math.abs(sumOf(subset1) - sumOf(subset2));
 };
 
 interface SubsetResult {
   subset1: number[];
   subset2: number[];
 }
-
-console.log(fb1([2, 9]));
-console.log(f1([2, 9]));
-console.log(f2([2, 9]));
-console.log(fb1([7, 6, 3]));
-console.log(f1([7, 6, 3]));
-console.log(f2([7, 6, 3]));
-console.log(fb1([1, 6, 11, 5]));
-console.log(f1([1, 6, 11, 5]));
-console.log(f2([1, 6, 11, 5]));
-console.log(fb1([8, 2, 12, 10, 16]));
-console.log(f1([8, 2, 12, 10, 16]));
-console.log(f2([8, 2, 12, 10, 16]));
-console.log(fb1([3, 12, 8, 2, 7, 15]));
-console.log(f1([3, 12, 8, 2, 7, 15]));
-console.log(f2([3, 12, 8, 2, 7, 15]));
