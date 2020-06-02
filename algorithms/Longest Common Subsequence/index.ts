@@ -7,6 +7,7 @@ export const f1 = (s1: string, s2: string) => {
       : s1[n1 - 1] === s2[n2 - 1]
       ? 1 + f(n1 - 1, n2 - 1)
       : Math.max(f(n1 - 1, n2), f(n1, n2 - 1));
+
   return f(s1.length, s2.length);
 };
 
@@ -32,15 +33,13 @@ export const f3 = (s1: string, s2: string) => {
 
   const f = (n1: number, n2: number): number => {
     let result = results[n1][n2];
-
-    if (typeof result !== 'number')
-      result =
-        n1 === 0 || n2 === 0
-          ? 0
-          : s1[n1 - 1] === s2[n2 - 1]
-          ? 1 + f(n1 - 1, n2 - 1)
-          : Math.max(f(n1 - 1, n2), f(n1, n2 - 1));
-
+    if (typeof result === 'number') return result;
+    result =
+      n1 === 0 || n2 === 0
+        ? 0
+        : s1[n1 - 1] === s2[n2 - 1]
+        ? 1 + f(n1 - 1, n2 - 1)
+        : Math.max(f(n1 - 1, n2), f(n1, n2 - 1));
     return (results[s1.length][s2.length] = result);
   };
 

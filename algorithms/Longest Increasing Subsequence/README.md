@@ -18,7 +18,7 @@ return max(
   f(1),
   f(2),
   ...
-  f(n)
+  f(arr.length + 1)
 )
 ```
 
