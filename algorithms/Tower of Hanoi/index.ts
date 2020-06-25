@@ -1,4 +1,4 @@
-import DescendingStack from '../../data_structures/DescendingStack';
+import DescendingStack from '../../data_structures/stacks/DescendingStack';
 
 const moveDisk = (from: DescendingStack, to: DescendingStack) => {
   const item = from.pop()!;

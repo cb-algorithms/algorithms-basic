@@ -23,6 +23,12 @@ export const min = (...numbers: number[]) => minOf(numbers);
 
 export const minOf = (numbers: number[]) => Math.min(...numbers);
 
+export const oneWithMaxLength = <TItem>(...arrays: TItem[][]) =>
+  oneWithMaxLengthOf(arrays);
+
+export const oneWithMaxLengthOf = <TItem>(arrays: TItem[][]) =>
+  arrays.reduce((max, cur) => (cur.length > max.length ? cur : max), []);
+
 export const product = (...numbers: number[]) => productOf(numbers);
 
 export const productOf = (numbers: number[]) =>
