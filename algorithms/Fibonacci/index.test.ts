@@ -1,4 +1,4 @@
-import { fibonacci1, fibonacci2, fibonacci3, fibonacci4, fibonacci5, fibonacci6 } from '.';
+import { f1, f2, f3, f4, f5, f6 } from '.';
 
 describe(`Fibonacci`, () => {
   const testCases: TestCase[] = [
@@ -10,22 +10,22 @@ describe(`Fibonacci`, () => {
     { n: 11, expected: 89 },
   ];
   test.each<TestCase>(testCases)(`Solution 1`, ({ n, expected }) => {
-    expect(fibonacci1(n)).toBe(expected);
+    expect(f1(n)).toBe(expected);
   });
   test.each<TestCase>(testCases)(`Solution 2`, ({ n, expected }) => {
-    expect(fibonacci2(n)).toBe(expected);
+    expect(f2(n)).toBe(expected);
   });
   test.each<TestCase>(testCases)(`Solution 3`, ({ n, expected }) => {
-    expect(fibonacci3(n)).toBe(expected);
+    expect(f3(n)).toBe(expected);
   });
   test.each<TestCase>(testCases)(`Solution 4`, ({ n, expected }) => {
-    expect(fibonacci4(n)).toBe(expected);
+    expect(f4(n)).toBe(expected);
   });
   test.each<TestCase>(testCases)(`Solution 5`, ({ n, expected }) => {
-    expect(fibonacci5(n)).toBe(expected);
+    expect(f5(n)).toBe(expected);
   });
   test.each<TestCase>(testCases)(`Solution 6`, ({ n, expected }) => {
-    expect(fibonacci6(n)).toBe(expected);
+    expect(f6(n)).toBe(expected);
   });
 });
 

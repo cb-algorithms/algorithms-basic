@@ -1,8 +1,5 @@
 import { generateArray } from '../../utils.ts/array';
 
-// -----------------------------------------------------------------------------
-// Solution 1: naive recursion
-// -----------------------------------------------------------------------------
 export const f1 = (
   count: number,
   values: number[],
@@ -16,11 +13,7 @@ export const f1 = (
 
   return f(count, totalWeight);
 };
-// -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Solution 2: Dynamic Programming - Tabulation Method (Bottom Up)
-// -----------------------------------------------------------------------------
 export const f2 = (
   count: number,
   values: number[],
@@ -41,11 +34,7 @@ export const f2 = (
   }
   return results[count][totalWeight];
 };
-// -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Solution 3: Dynamic Programming - Memoization Method (Top Down)
-// -----------------------------------------------------------------------------
 export const f3 = (
   count: number,
   values: number[],
@@ -55,13 +44,13 @@ export const f3 = (
   const results = generateArray<number>(count + 1, totalWeight + 1);
   const f = (n: number, w: number): number => {
     let result = results[n][w];
-    if (typeof result !== 'number')
-      result =
-        w === 0 || n === 0 || w < weights[n - 1]
-          ? 0
-          : Math.max(values[n - 1] + f(n - 1, w - weights[n - 1]), f(n - 1, w));
-    return (results[n][w] = result);
+    if (typeof result === 'number') return result;
+    result =
+      w === 0 || n === 0 || w < weights[n - 1]
+        ? 0
+        : Math.max(values[n - 1] + f(n - 1, w - weights[n - 1]), f(n - 1, w));
+    results[n][w] = result;
+    return result;
   };
   return f(count, totalWeight);
 };
-// -----------------------------------------------------------------------------

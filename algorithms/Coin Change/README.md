@@ -3,11 +3,12 @@
 ## Solutions
 
 ```text
-coinValues: number[]
+coins: number[]
 
 f(n, 0) = 1
-f(0, cents) = 0
-f(n, cents) = f(n - 1, cents) + (cents >= coinValues[n - 1] ? f(n, cents - coinValues[n - 1]) : 0)
+f(n, t) = 0
+  + (t >= coins[n - 1]) && f(n, t - coins[n - 1])
+  + (n > 1) && f(n - 1, t)
 ```
 
 ## References

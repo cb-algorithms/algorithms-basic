@@ -1,31 +1,32 @@
+import { generateArray } from '../../utils.ts/array';
+
 // -----------------------------------------------------------------------------
 // Solution 1: naive recursion
 // -----------------------------------------------------------------------------
-export const fibonacci1 = (n: number): number => {
-  if (n === 1) return 1;
-  if (n === 0) return 0;
-  return fibonacci1(n - 1) + fibonacci1(n - 2);
+export const f1 = (number: number) => {
+  const f = (n: number): number => (n <= 1 ? n : f(n - 1) + f(n - 2));
+  return f(number);
 };
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Solution 2: tail-call optimization recursion
 // -----------------------------------------------------------------------------
-const fib2 = (i: number, curr: number, prev: number): number => {
-  if (i === 1) return curr;
-  if (i === 0) return prev;
-  return fib2(i - 1, curr + prev, curr);
-};
 
-export const fibonacci2 = (n: number) => {
-  return fib2(n, 1, 0);
+export const f2 = (n: number) => {
+  const f = (i: number, curr: number, prev: number): number => {
+    if (i === 1) return curr;
+    if (i === 0) return prev;
+    return f(i - 1, curr + prev, curr);
+  };
+  return f(n, 1, 0);
 };
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Solution 3: simulate the internal tail code optimization
 // -----------------------------------------------------------------------------
-export const fibonacci3 = (n: number) => {
+export const f3 = (n: number) => {
   let i = n;
   let curr = 1;
   let prev = 0;
@@ -49,19 +50,19 @@ export const fibonacci3 = (n: number) => {
 // -----------------------------------------------------------------------------
 // Solution 4: Dynamic Programming - Tabulation Method (Bottom Up)
 // -----------------------------------------------------------------------------
-export const fibonacci4 = (n: number) => {
-  const results = [0, 1];
-  for (let i = 2; i <= n; ++i) {
-    results[i] = results[i - 1] + results[i - 2];
+export const f4 = (number: number) => {
+  const results = generateArray<number>(number + 1);
+  for (let n = 0; n <= number; ++n) {
+    results[n] = n <= 1 ? n : results[n - 1] + results[n - 2];
   }
-  return results[n];
+  return results[number];
 };
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Solution 5: Optimized version of Solution 4
 // -----------------------------------------------------------------------------
-export const fibonacci5 = (n: number) => {
+export const f5 = (n: number) => {
   let curr = 1;
   let prev = 0;
 
@@ -79,12 +80,13 @@ export const fibonacci5 = (n: number) => {
 // -----------------------------------------------------------------------------
 // Solution 6: Dynamic Programming - Memoization Method (Top Down)
 // -----------------------------------------------------------------------------
-const results6: number[] = [0, 1];
-
-export const fibonacci6 = (n: number): number => {
-  let result = results6[n];
-  if (typeof results6[n] !== 'number')
-    result = fibonacci6(n - 1) + fibonacci6(n - 2);
-  return (results6[n] = result);
+export const f6 = (number: number) => {
+  const results = generateArray<number>(number + 1);
+  const f = (n: number): number => {
+    let result = results[n];
+    if (typeof result !== 'number') result = n <= 1 ? n : f(n - 1) + f(n - 2);
+    return (results[n] = result);
+  };
+  return f(number);
 };
 // -----------------------------------------------------------------------------

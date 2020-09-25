@@ -1,8 +1,5 @@
 import { generateArray } from '../../utils.ts/array';
 
-// -----------------------------------------------------------------------------
-// Solution 1: naive recursion
-// -----------------------------------------------------------------------------
 export const f1 = (coins: number[], total: number) => {
   const f = (n: number, t: number): number => {
     if (t === 0) return 1;
@@ -13,11 +10,7 @@ export const f1 = (coins: number[], total: number) => {
   };
   return f(coins.length, total);
 };
-// -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Solution 2: Dynamic Programming - Tabulation Method (Bottom Up)
-// -----------------------------------------------------------------------------
 export const f2 = (coins: number[], total: number) => {
   const results = generateArray<number>(coins.length + 1, total + 1);
   for (let n = 0; n <= coins.length; ++n) {
@@ -32,11 +25,7 @@ export const f2 = (coins: number[], total: number) => {
   }
   return results[coins.length][total];
 };
-// -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Solution 3: Dynamic Programming - Memoization Method (Top Down)
-// -----------------------------------------------------------------------------
 export const f3 = (coins: number[], total: number) => {
   const results = generateArray<number>(coins.length + 1, total + 1);
   const f = (n: number, t: number): number => {
@@ -53,4 +42,7 @@ export const f3 = (coins: number[], total: number) => {
   };
   return f(coins.length, total);
 };
-// -----------------------------------------------------------------------------
+
+console.log(f3([1, 2, 3], 4));
+console.log(f3([2, 5, 3, 6], 10));
+console.log(f3([1, 2, 3], 6));

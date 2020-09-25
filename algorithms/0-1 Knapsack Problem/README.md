@@ -10,15 +10,27 @@ Input:
   values: [10, 40, 30, 50]
   weights: [5, 4, 6, 3]
   totalWeight: 10
-Output: 70
-Explanation: [40, 30] has the largest total value (70) and has the total weight of 10
+Output: 90
+Explanation: [40, 50] has the largest total value (90) and has the total weight of 7
 ```
 
 ## Solutions
 
-1. Naive recursion
-1. Dynamic Programming - tabulation method
-1. Dynamic Programming - memoization method
+1. Dynamic Programming
+
+   ```text
+   values: number[]
+   weights: number[]
+
+   f(0, w) = 0
+   f(n, 0) = 0
+   f(n, w) = w < weights[n - 1]
+     ? 0
+     : max(
+       values[n - 1] + f(n - 1, weights[n - 1]),
+       f(n - 1, w)
+     )
+   ```
 
 ## References
 

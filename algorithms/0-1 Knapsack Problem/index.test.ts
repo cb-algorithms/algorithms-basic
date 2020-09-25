@@ -1,4 +1,4 @@
-import { knapsack1, knapsack2, knapsack3 } from '.';
+import { f1, f2, f3 } from '.';
 
 describe(`Knapsack Problem`, () => {
   const testCases: TestCase[] = [
@@ -41,19 +41,19 @@ describe(`Knapsack Problem`, () => {
   test.each<TestCase>(testCases)(
     `Solution 1`,
     ({ totalItem, values, weights, totalWeight, expected }) => {
-      expect(knapsack1(totalItem, values, weights, totalWeight)).toBe(expected);
+      expect(f1(totalItem, values, weights, totalWeight)).toBe(expected);
     },
   );
   test.each<TestCase>(testCases)(
     `Solution 2`,
     ({ totalItem, values, weights, totalWeight, expected }) => {
-      expect(knapsack2(totalItem, values, weights, totalWeight)).toBe(expected);
+      expect(f2(totalItem, values, weights, totalWeight)).toBe(expected);
     },
   );
   test.each<TestCase>(testCases)(
     `Solution 3`,
     ({ totalItem, values, weights, totalWeight, expected }) => {
-      expect(knapsack3(totalItem, values, weights, totalWeight)).toBe(expected);
+      expect(f3(totalItem, values, weights, totalWeight)).toBe(expected);
     },
   );
 });
