@@ -6,12 +6,12 @@ class UnorderedError extends Error {
   }
 }
 
-export default class OrderedStack<TItem> extends Stack<TItem> {
+export default class OrderedStack<TValue> extends Stack<TValue> {
   constructor(
-    private compare: (cur: TItem, pre: TItem) => number,
-    defaultValues?: TItem[],
+    private compare: (cur: TValue, pre: TValue) => number,
+    ...defaultValues: TValue[]
   ) {
-    super(defaultValues);
+    super(...defaultValues);
     if (
       defaultValues &&
       defaultValues.some(
@@ -22,8 +22,8 @@ export default class OrderedStack<TItem> extends Stack<TItem> {
       throw new UnorderedError();
   }
 
-  push(item: TItem) {
-    if (this.length && this.compare(item, this.peek()) < 0)
+  push(item: TValue) {
+    if (this.length && this.compare(item, this.peek()!) < 0)
       throw new UnorderedError();
     super.push(item);
   }
