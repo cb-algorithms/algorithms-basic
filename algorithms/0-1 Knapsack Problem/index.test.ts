@@ -38,23 +38,13 @@ describe(`Knapsack Problem`, () => {
       expected: 350,
     },
   ];
-  test.each<TestCase>(testCases)(
-    `Solution 1`,
-    ({ totalItem, values, weights, totalWeight, expected }) => {
-      expect(f1(totalItem, values, weights, totalWeight)).toBe(expected);
-    },
-  );
-  test.each<TestCase>(testCases)(
-    `Solution 2`,
-    ({ totalItem, values, weights, totalWeight, expected }) => {
-      expect(f2(totalItem, values, weights, totalWeight)).toBe(expected);
-    },
-  );
-  test.each<TestCase>(testCases)(
-    `Solution 3`,
-    ({ totalItem, values, weights, totalWeight, expected }) => {
-      expect(f3(totalItem, values, weights, totalWeight)).toBe(expected);
-    },
+  [f1, f2, f3].forEach((f, i) =>
+    test.each(testCases)(
+      `Solution ${i + 1}`,
+      ({ totalItem, values, weights, totalWeight, expected }) => {
+        expect(f(totalItem, values, weights, totalWeight)).toBe(expected);
+      },
+    ),
   );
 });
 

@@ -12,11 +12,13 @@ describe(`Fractional Knapsack Problem`, () => {
       expected: 240,
     },
   ];
-  test.each<TestCase>(testCases)(
-    `Solution 1`,
-    ({ items, totalWeight, expected }) => {
-      expect(f1(items, totalWeight)).toBe(expected);
-    },
+  [f1].forEach((f, i) =>
+    test.each(testCases)(
+      `Solution ${i + 1}`,
+      ({ items, totalWeight, expected }) => {
+        expect(f(items, totalWeight)).toBe(expected);
+      },
+    ),
   );
 });
 

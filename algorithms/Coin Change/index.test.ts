@@ -6,15 +6,11 @@ describe(`Coin Change`, () => {
     { total: 10, coins: [2, 5, 3, 6], expected: 5 },
     { total: 6, coins: [1, 2, 3], expected: 7 },
   ];
-  test.each<TestCase>(testCases)(`Solution 1`, ({ total, coins, expected }) => {
-    expect(f1(coins, total)).toBe(expected);
-  });
-  test.each<TestCase>(testCases)(`Solution 2`, ({ total, coins, expected }) => {
-    expect(f2(coins, total)).toBe(expected);
-  });
-  test.each<TestCase>(testCases)(`Solution 3`, ({ total, coins, expected }) => {
-    expect(f3(coins, total)).toBe(expected);
-  });
+  [f1, f2, f3].forEach((f, i) =>
+    test.each(testCases)(`Solution ${i + 1}`, ({ total, coins, expected }) => {
+      expect(f(coins, total)).toBe(expected);
+    }),
+  );
 });
 
 interface TestCase {

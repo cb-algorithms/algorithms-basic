@@ -1,4 +1,4 @@
-const rob = (amounts: number[]) => {
+export const f1 = (amounts: number[]) => {
   let max_0 = 0;
   let max_1 = 0;
   let max_2 = 0;
@@ -12,5 +12,3 @@ const rob = (amounts: number[]) => {
 
   return Math.max(max_0, max_1);
 };
-
-export default rob;

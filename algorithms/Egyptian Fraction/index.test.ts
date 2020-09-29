@@ -27,9 +27,11 @@ describe(`Egyptian Fraction`, () => {
       ],
     },
   ];
-  test.each<TestCase>(testCases)(`Solution 1`, ({ fraction, expected }) => {
-    expect(f1(fraction)).toMatchObject(expected);
-  });
+  [f1].forEach((f, i) =>
+    test.each(testCases)(`Solution ${i + 1}`, ({ fraction, expected }) => {
+      expect(f(fraction)).toMatchObject(expected);
+    }),
+  );
 });
 
 interface TestCase {

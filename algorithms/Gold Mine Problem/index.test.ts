@@ -1,4 +1,4 @@
-import { goldMine1, goldMine2, goldMine3 } from '.';
+import { f1, f2, f3 } from '.';
 
 describe(`Gold Mine Problem`, () => {
   const testCases: TestCase[] = [
@@ -35,23 +35,13 @@ describe(`Gold Mine Problem`, () => {
       expected: 83,
     },
   ];
-  test.each<TestCase>(testCases)(
-    `Solution 1`,
-    ({ matrix, row, col, expected }) => {
-      expect(goldMine1(matrix, row, col)).toBe(expected);
-    },
-  );
-  test.each<TestCase>(testCases)(
-    `Solution 2`,
-    ({ matrix, row, col, expected }) => {
-      expect(goldMine2(matrix, row, col)).toBe(expected);
-    },
-  );
-  test.each<TestCase>(testCases)(
-    `Solution 3`,
-    ({ matrix, row, col, expected }) => {
-      expect(goldMine3(matrix, row, col)).toBe(expected);
-    },
+  [f1, f2, f3].forEach((f, i) =>
+    test.each(testCases)(
+      `Solution ${i + 1}`,
+      ({ matrix, row, col, expected }) => {
+        expect(f(matrix, row, col)).toBe(expected);
+      },
+    ),
   );
 });
 

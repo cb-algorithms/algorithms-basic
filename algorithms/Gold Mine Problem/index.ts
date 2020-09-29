@@ -3,20 +3,20 @@ import { generateArray } from '../../utils.ts/array';
 // -----------------------------------------------------------------------------
 // Solution 1: naive recursion
 // -----------------------------------------------------------------------------
-export const goldMine1 = (matrix: number[][], row: number, col: number) => {
-  const goldMine = (rowNo: number, colNo: number): number =>
+export const f1 = (matrix: number[][], row: number, col: number) => {
+  const f = (rowNo: number, colNo: number): number =>
     colNo === 0
       ? matrix[rowNo][colNo]
       : matrix[rowNo][colNo] +
         Math.max.apply(null, [
-          goldMine(rowNo, colNo - 1),
-          rowNo > 0 ? goldMine(rowNo - 1, colNo - 1) : 0,
-          rowNo < row - 1 ? goldMine(rowNo + 1, colNo - 1) : 0,
+          f(rowNo, colNo - 1),
+          rowNo > 0 ? f(rowNo - 1, colNo - 1) : 0,
+          rowNo < row - 1 ? f(rowNo + 1, colNo - 1) : 0,
         ]);
 
   return Math.max.apply(
     null,
-    Array.from({ length: row }, (_, rowNo) => goldMine(rowNo, col - 1)),
+    Array.from({ length: row }, (_, rowNo) => f(rowNo, col - 1)),
   );
 };
 // -----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ export const goldMine1 = (matrix: number[][], row: number, col: number) => {
 // -----------------------------------------------------------------------------
 // Solution 2: Dynamic Programming - Tabulation Method (Bottom Up)
 // -----------------------------------------------------------------------------
-export const goldMine2 = (matrix: number[][], row: number, col: number) => {
+export const f2 = (matrix: number[][], row: number, col: number) => {
   const results = generateArray<number>(row, col);
 
   for (let colNo = 0; colNo < col; ++colNo) {
@@ -51,10 +51,10 @@ export const goldMine2 = (matrix: number[][], row: number, col: number) => {
 // -----------------------------------------------------------------------------
 // Solution 3: Dynamic Programming - Memoization Method (Top Down)
 // -----------------------------------------------------------------------------
-export const goldMine3 = (matrix: number[][], row: number, col: number) => {
+export const f3 = (matrix: number[][], row: number, col: number) => {
   const results = generateArray<number>(row, col);
 
-  const goldMine = (rowNo: number, colNo: number) => {
+  const f = (rowNo: number, colNo: number) => {
     let result = results[rowNo][colNo];
     if (typeof result !== 'number')
       result =
@@ -62,16 +62,16 @@ export const goldMine3 = (matrix: number[][], row: number, col: number) => {
           ? matrix[rowNo][colNo]
           : matrix[rowNo][colNo] +
             Math.max.apply(null, [
-              goldMine(rowNo, colNo - 1),
-              rowNo > 0 ? goldMine(rowNo - 1, colNo - 1) : 0,
-              rowNo < row - 1 ? goldMine(rowNo + 1, colNo - 1) : 0,
+              f(rowNo, colNo - 1),
+              rowNo > 0 ? f(rowNo - 1, colNo - 1) : 0,
+              rowNo < row - 1 ? f(rowNo + 1, colNo - 1) : 0,
             ]);
     return (results[rowNo][colNo] = result);
   };
 
   return Math.max.apply(
     null,
-    Array.from({ length: row }, (_, rowNo) => goldMine(rowNo, col - 1)),
+    Array.from({ length: row }, (_, rowNo) => f(rowNo, col - 1)),
   );
 };
 // -----------------------------------------------------------------------------

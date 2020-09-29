@@ -13,15 +13,11 @@ describe(`Longest Common Subsequence`, () => {
       expected: 4,
     },
   ];
-  test.each<TestCase>(testCases)(`Solution 1`, ({ s1, s2, expected }) => {
-    expect(f1(s1, s2)).toBe(expected);
-  });
-  test.each<TestCase>(testCases)(`Solution 2`, ({ s1, s2, expected }) => {
-    expect(f2(s1, s2)).toBe(expected);
-  });
-  test.each<TestCase>(testCases)(`Solution 3`, ({ s1, s2, expected }) => {
-    expect(f3(s1, s2)).toBe(expected);
-  });
+  [f1, f2, f3].forEach((f, i) =>
+    test.each(testCases)(`Solution ${i + 1}`, ({ s1, s2, expected }) => {
+      expect(f(s1, s2)).toBe(expected);
+    }),
+  );
 });
 
 interface TestCase {

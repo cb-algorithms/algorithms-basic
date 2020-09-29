@@ -1,4 +1,4 @@
-import rob1 from './solution1';
+import { f1 } from '.';
 
 describe(`House Robber`, () => {
   const testCases: TestCase[] = [
@@ -23,9 +23,11 @@ describe(`House Robber`, () => {
       expected: 19,
     },
   ];
-  test.each<TestCase>(testCases)(`Solution 1`, ({ amounts, expected }) => {
-    expect(rob1(amounts)).toBe(expected);
-  });
+  [f1].forEach((f, i) =>
+    test.each(testCases)(`Solution ${i + 1}`, ({ amounts, expected }) => {
+      expect(f(amounts)).toBe(expected);
+    }),
+  );
 });
 
 interface TestCase {

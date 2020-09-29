@@ -1,9 +1,9 @@
 // -----------------------------------------------------------------------------
 // Solution 1: naive recursion
 // -----------------------------------------------------------------------------
-export const factorial1 = (n: number): number => {
+export const f1 = (n: number): number => {
   if (n === 0) return 1;
-  return n * factorial1(n - 1); // not tail-call
+  return n * f1(n - 1); // not tail-call
 };
 // -----------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ const fac2 = (i: number, acc: number): number => {
   return fac2(i - 1, acc * i); // tail-call
 };
 
-export const factorial2 = (n: number): number => {
+export const f2 = (n: number): number => {
   return fac2(n, 1);
 };
 // -----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ export const factorial2 = (n: number): number => {
 // -----------------------------------------------------------------------------
 // Solution 3: simulate the internal tail code optimization
 // -----------------------------------------------------------------------------
-export const factorial3 = (n: number) => {
+export const f3 = (n: number) => {
   let i = n;
   let acc = 1;
 
@@ -46,7 +46,7 @@ export const factorial3 = (n: number) => {
 // Solution 4: Dynamic Programming - Tabulation Method (Bottom Up)
 // References: https://www.geeksforgeeks.org/tabulation-vs-memoization/
 // -----------------------------------------------------------------------------
-export const factorial4 = (n: number) => {
+export const f4 = (n: number) => {
   const results = [1];
   for (let i = 1; i <= n; ++i) {
     results[i] = i * results[i - 1];
@@ -58,7 +58,7 @@ export const factorial4 = (n: number) => {
 // -----------------------------------------------------------------------------
 // Solution 5: Optimized version of Solution 4
 // -----------------------------------------------------------------------------
-export const factorial5 = (n: number) => {
+export const f5 = (n: number) => {
   let result = 1;
   for (let i = 1; i <= n; ++i) {
     result *= i;
@@ -73,9 +73,9 @@ export const factorial5 = (n: number) => {
 // -----------------------------------------------------------------------------
 const results6: number[] = [1];
 
-export const factorial6 = (n: number): number => {
+export const f6 = (n: number): number => {
   let result = results6[n];
-  if (typeof result !== 'number') result = factorial6(n - 1) * n;
+  if (typeof result !== 'number') result = f6(n - 1) * n;
   return (results6[n] = result);
 };
 // -----------------------------------------------------------------------------
