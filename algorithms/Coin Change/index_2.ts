@@ -42,7 +42,3 @@ export const f3 = (coins: number[], total: number) => {
   };
   return f(coins.length, total);
 };
-
-console.log(f3([1, 2, 3], 4));
-console.log(f3([2, 5, 3, 6], 10));
-console.log(f3([1, 2, 3], 6));

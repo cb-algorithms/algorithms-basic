@@ -6,6 +6,8 @@ describe(`Edit Distance`, () => {
     { s1: 'cut', s2: 'cat', expected: 1 },
     { s1: 'sunday', s2: 'saturday', expected: 3 },
     { s1: 'thought', s2: 'through', expected: 2 },
+    { s1: 'dog', s2: 'cat', expected: 3 },
+    { s1: 'dog', s2: 'horse', expected: 4 },
   ];
   test.each(testCases)(`Solution 1`, ({ s1, s2, expected }) => {
     expect(f1(s1, s2)).toBe(expected);

@@ -1,8 +1,5 @@
 import { generateArray } from '../../utils.ts/array';
 
-// -----------------------------------------------------------------------------
-// Solution 1: naive recursion
-// -----------------------------------------------------------------------------
 export const f1 = (set: number[], sum: number) => {
   const f = (n: number, s: number): boolean => {
     if (s === 0) return true;
@@ -11,11 +8,7 @@ export const f1 = (set: number[], sum: number) => {
   };
   return f(set.length, sum);
 };
-// -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Solution 2: Dynamic Programming - Tabulation Method (Bottom Up)
-// -----------------------------------------------------------------------------
 export const f2 = (set: number[], sum: number) => {
   const results = generateArray<boolean>(set.length + 1, sum);
   for (let n = 0; n <= set.length; ++n) {
@@ -30,11 +23,7 @@ export const f2 = (set: number[], sum: number) => {
   }
   return results[set.length][sum];
 };
-// -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Solution 3: Dynamic Programming - Memoization Method (Top Down)
-// -----------------------------------------------------------------------------
 export const f3 = (set: number[], sum: number) => {
   const results = generateArray<boolean>(set.length + 1, sum);
   const f = (n: number, s: number): boolean => {
@@ -49,4 +38,5 @@ export const f3 = (set: number[], sum: number) => {
   };
   return f(set.length, sum);
 };
-// -----------------------------------------------------------------------------
+
+console.log(f1([3, 34, 4, 12, 5, 2], 14));
