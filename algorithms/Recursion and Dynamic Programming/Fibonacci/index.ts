@@ -1,4 +1,4 @@
-import { generateArray } from '../../../utils.ts/array';
+import { generateArray } from '../../../utils/array';
 
 // -----------------------------------------------------------------------------
 // Solution 1: naive recursion

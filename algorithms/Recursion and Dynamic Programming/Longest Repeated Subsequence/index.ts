@@ -1,5 +1,5 @@
-import { whichHasMaxLength } from '../../../utils.ts/common';
-import { generateArray } from '../../../utils.ts/array';
+import { whichHasMaxLength } from '../../../utils/common';
+import { generateArray } from '../../../utils/array';
 
 export const f1 = (s: string) => {
   const f = (n1: number, n2: number): string =>

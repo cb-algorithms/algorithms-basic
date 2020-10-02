@@ -1,4 +1,4 @@
-import { generateArray } from '../../../utils.ts/array';
+import { generateArray } from '../../../utils/array';
 
 export const fa1 = (arr: number[]) => {
   const f = (n: number, m: number): number =>
