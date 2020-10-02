@@ -1,4 +1,4 @@
-import { sumOf } from '../../../utils.ts/array';
+import { sumOf } from '../../../utils/array';
 
 export const f1 = (arr: number[]) => {
   const f = (n: number, target: number): number => {

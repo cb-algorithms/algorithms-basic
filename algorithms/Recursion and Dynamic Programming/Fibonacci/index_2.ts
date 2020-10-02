@@ -1,4 +1,4 @@
-import { generateArray } from '../../../utils.ts/array';
+import { generateArray } from '../../../utils/array';
 
 export const f1 = (number: number) => {
   const f = (n: number): number => (n <= 1 ? n : f(n - 1) + f(n - 2));

@@ -1,4 +1,4 @@
-import { generateArray, maxOf } from '../../../utils.ts/array';
+import { generateArray, maxOf } from '../../../utils/array';
 
 // -----------------------------------------------------------------------------
 // Solution 1: naive recursion

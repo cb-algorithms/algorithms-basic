@@ -1,4 +1,4 @@
-import { oneWithMaxLength, generateArray } from '../../../utils.ts/array';
+import { oneWithMaxLength, generateArray } from '../../../utils/array';
 
 const compareBoxes = ([b1s1, b1s2]: Box, [b2s1, b2s2]: Box) =>
   (b1s1 > b2s1 && b1s2 > b2s2) || (b1s1 > b2s2 && b1s2 > b2s1)

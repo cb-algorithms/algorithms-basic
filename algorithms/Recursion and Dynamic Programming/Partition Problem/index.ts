@@ -1,4 +1,4 @@
-import { sumOf, generateArray } from '../../../utils.ts/array';
+import { sumOf, generateArray } from '../../../utils/array';
 
 export const f1 = (arr: number[]) => {
   const f = (n: number, sum: number): boolean => {

@@ -1,4 +1,4 @@
-import { productOf, maxOf } from '../../../utils.ts/array';
+import { productOf, maxOf } from '../../../utils/array';
 
 export const f1 = (arr: number[]) => {
   const posNumbers: number[] = [];
