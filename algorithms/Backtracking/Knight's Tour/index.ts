@@ -1,6 +1,6 @@
 import { generateArray } from '../../../utils/array';
 
-const knightMoves: Coordinate[] = [
+const knightMoves = [
   [-2, 1],
   [-1, 2],
   [1, 2],
@@ -9,33 +9,30 @@ const knightMoves: Coordinate[] = [
   [1, -2],
   [-1, -2],
   [-2, -1],
-];
+] as const;
 
 export const f1 = (rows: number, cols: number) => {
   const moves = generateArray<number | undefined>(rows, cols);
 
-  const isValidMove = ([row, col]: Coordinate) =>
+  const isValidMove = (row: number, col: number) =>
     row >= 0 &&
     row < rows &&
     col >= 0 &&
     col < cols &&
     typeof moves[row][col] === 'undefined';
 
-  const allMovesFilled = () =>
-    moves.every(row => row.every(col => typeof col === 'number'));
-
-  const f = (move: Coordinate, nth: number): boolean => {
-    if (allMovesFilled()) return true;
-    if (!isValidMove(move)) return false;
-    const [row, col] = move;
-    moves[row][col] = nth;
-    if (knightMoves.some(([r, c]) => f([row + r, col + c], nth + 1)))
+  const f = (r: number, c: number, n: number): boolean => {
+    moves[r][c] = n;
+    if (n === rows * cols - 1) return true;
+    if (
+      knightMoves.some(
+        ([v, h]) => isValidMove(r + v, c + h) && f(r + v, c + h, n + 1),
+      )
+    )
       return true;
-    moves[row][col] = undefined;
+    moves[r][c] = undefined;
     return false;
   };
 
-  return f([0, 0], 0) && moves;
+  return f(0, 0, 0) && moves;
 };
-
-export type Coordinate = [row: number, col: number];
