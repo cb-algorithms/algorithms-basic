@@ -1,4 +1,4 @@
-import { Coordinate, f1 } from '.';
+import { f1 } from '.';
 
 function assertMoves(
   moves: false | (number | undefined)[][],
@@ -31,7 +31,7 @@ describe(`Knight's Tour`, () => {
       printMoves(moves);
       expect(moves).toHaveLength(rows);
 
-      const steps: Coordinate[] = [];
+      const steps: [row: number, col: number][] = [];
       for (let r = 0; r < moves!.length; ++r) {
         const row = moves![r];
         expect(row).toHaveLength(cols);
