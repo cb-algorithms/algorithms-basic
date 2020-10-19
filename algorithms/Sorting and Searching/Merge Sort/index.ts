@@ -2,23 +2,23 @@ export const f1 = (arr: number[]) => {
   const merge = (begin: number, middle: number, end: number) => {
     const temp: number[] = [];
     for (let i = begin; i < end; ++i) {
-      temp[i] = arr[i];
+      temp.push(arr[i]);
     }
     let l = begin;
     let r = middle;
     let p = begin;
     while (l < middle && r < end) {
-      if (temp[l] <= temp[r]) {
-        arr[p] = temp[l];
+      if (temp[l - begin] <= temp[r - begin]) {
+        arr[p] = temp[l - begin];
         ++l;
       } else {
-        arr[p] = temp[r];
+        arr[p] = temp[r - begin];
         ++r;
       }
       ++p;
     }
     for (; l < middle; ++l, ++p) {
-      arr[p] = temp[l];
+      arr[p] = temp[l - begin];
     }
   };
 
